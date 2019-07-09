@@ -83,8 +83,75 @@
 			</div>
 		</div>
 	</div>
-	<script>
-	  // your solution here
+	<script defer>
+      var myRotateElement = document.getElementById('rotate-box');
+      var myPinchElement = document.getElementById('pinch-box');
+      var myPressElement = document.getElementById('press-box');
+      var myPanElement = document.getElementById('pan-box');
+      var myTapElement = document.getElementById('tap-box');
+      var mySwipeElement = document.getElementById('swipe-box');
+      
+    
+      // create a simple instance
+      // by default, it only adds horizontal recognizers
+      var mc_rotate = new Hammer(myRotateElement);
+      var mc_pinch = new Hammer(myPinchElement);
+    
+    
+      var mc_press = new Hammer(myPressElement);
+      var mc_pan = new Hammer(myPanElement);
+      var mc_tap = new Hammer(myTapElement);
+      var mc_swipe = new Hammer(mySwipeElement);
+    
+    
+
+//       var rotate = new Hammer.Rotate({enable:true});
+//       var pinch = new Hammer.Pinch({enable:true});
+//       mc_rotate.add(rotate);
+//       mc_pinch.add(pinch);
+
+      
+      mc_pinch.get('pinch').set({ enable: true })
+      mc_rotate.get('rotate').set({ enable: true })
+
+      
+      mc_pan.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+    
+      // listen to events...
+      mc_rotate.on("rotate", function(ev) {
+        var rotate_box_element = document.getElementById('rotate-box');
+        rotate_box_element.style.height = "40px";
+        rotate_box_element.style.width = "40px";
+      });
+
+    
+      mc_pinch.on("pinch", function(ev) {
+        var pinch_box_element = document.getElementById('pinch-box');
+        pinch_box_element.style.color = "red";
+      });
+
+      mc_press.on("press", function(ev) {
+        var press_box_element = document.getElementById('press-box');
+        press_box_element.style.opacity= 0.5;
+        
+      });
+
+      mc_pan.on("pan", function(ev) {
+        var pan_box_element = document.getElementById('pan-box');
+        pan_box_element.style.fontSize= "26px";
+      });
+
+      mc_tap.on("tap", function(ev) {
+         var tap_box_element = document.getElementById('tap-box');
+         tap_box_element.style.display = "none";
+      });
+
+      mc_swipe.on("swipe", function(ev) {
+         var swipe_box_element = document.getElementById('swipe-box');
+         swipe_box_element.style.backgroundColor = "red"; 
+      });
+      
+    
   </script>
 </body>
 </html>
